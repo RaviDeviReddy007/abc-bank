@@ -13,11 +13,10 @@ import com.bank.models.Transaction;
 
 public class TransactionService {
 
-		public static List<Transaction> getExcludePositiveAmounts(List<Account> accounts) {
+	public static List<Transaction> getExcludePositiveAmounts(List<Account> accounts) {
 		return accounts.stream()
 				.flatMap(account -> Stream.concat(account.getPayments().stream(), account.getTransfers().stream()))
-				.filter(tx -> tx.getAmount() < 0)
-				.collect(Collectors.toList());
+				.filter(tx -> tx.getAmount() < 0).collect(Collectors.toList());
 	}
 
 	public static Double getAccountBalanace(Account account) {
@@ -36,7 +35,7 @@ public class TransactionService {
 		if (filteredTxs.size() < 2) {
 			timeIntervals.add(TimeInterval.OTHER);
 		}
-		
+
 		for (int i = 0; i < filteredTxs.size(); i++) {
 			if (i + 1 < filteredTxs.size()) {
 				timeIntervals.add(calculateTimeInterval(filteredTxs.get(i), filteredTxs.get(i + 1)));
