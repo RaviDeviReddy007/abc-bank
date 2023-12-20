@@ -4,22 +4,22 @@ import java.util.List;
 import java.util.UUID;
 
 public class BankAccount extends Account{
-	UUID idetentifier;
+	UUID identifier;
 	List<Transfer> transfers;
 	List<Payment> payments;
 	
-	public BankAccount(UUID idetentifier, UUID userIdentifier, List<Transfer> transfers, List<Payment> payments) {
+	public BankAccount(UUID identifier, UUID userIdentifier, List<Transfer> transfers, List<Payment> payments) {
 		super(userIdentifier);
-		this.idetentifier = idetentifier;
+		this.identifier = identifier;
 		this.transfers = transfers;
 		this.payments = payments;
 	}
 	
-	public UUID getIdetentifier() {
-		return idetentifier;
+	public UUID getIdentifier() {
+		return identifier;
 	}
-	public void setIdetentifier(UUID idetentifier) {
-		this.idetentifier = idetentifier;
+	public void setIdentifier(UUID identifier) {
+		this.identifier = identifier;
 	}
 	public List<Transfer> getTransfers() {
 		return transfers;

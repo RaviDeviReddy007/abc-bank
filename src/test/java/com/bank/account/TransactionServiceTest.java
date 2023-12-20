@@ -1,25 +1,24 @@
 package com.bank.account;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
-import java.util.UUID;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import com.bank.constants.TimeInterval;
 import com.bank.constants.TransactionType;
-import com.bank.models.Account;
 import com.bank.models.BankAccount;
 import com.bank.models.Payment;
 import com.bank.models.Transaction;
 import com.bank.models.Transfer;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TransactionServiceTest {
 
@@ -32,11 +31,15 @@ public class TransactionServiceTest {
 		Transfer t21 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-21 salary", TransactionType.TRANSFER, 1000);
 		Payment t22 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
 
+		Transfer t31 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-31 salary", TransactionType.TRANSFER, 1000);
+		Payment t32 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-32 gym", TransactionType.PAYMENT, 100, "Recipient-3");
+
 		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t11), List.of(t12));
 		BankAccount a2 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t21), List.of(t22));
-		
-		List<Transaction> expectedOutput = List.of(t11, t12, t22);
-		assertThat(TransactionService.getExcludePositiveAmounts(List.of(a1, a2)), containsInAnyOrder(expectedOutput.toArray()));
+		BankAccount a3 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t31), List.of(t32));
+
+		Map<BankAccount, List<Transaction>> expectedOutput = Map.of(a1, List.of(t11, t12), a2, List.of(t22));
+		assertThat(TransactionService.getExcludePositiveTransactionsAccounts(List.of(a1, a2, a3)), is(expectedOutput));
 	}
 	
 	@DisplayName("Test Account Balance Amount")
@@ -48,7 +51,7 @@ public class TransactionServiceTest {
 		Payment p2 = new Payment(LocalDate.of(2023, Month.DECEMBER, 17), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
 
 		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t1, t2), List.of(p1, p2));
-		assertEquals(600, TransactionService.getAccountBalanace(a1));
+		assertEquals(600, TransactionService.getAccountBalance(a1));
 	}
 
 	
@@ -60,10 +63,10 @@ public class TransactionServiceTest {
 		Transfer t2 = new Transfer(LocalDate.of(2023, Month.JUNE, 22), "Video Streaming", TransactionType.TRANSFER, -99);
 		Transfer t3 = new Transfer(LocalDate.of(2023, Month.JUNE, 25), "Salary", TransactionType.TRANSFER, 1000);
 		Payment p2 = new Payment(LocalDate.of(2023, Month.JUNE, 28), "Gym", TransactionType.PAYMENT, -50, "123-456");
-		Payment p3 = new Payment(LocalDate.of(2023, Month.JULY, 04), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Payment p3 = new Payment(LocalDate.of(2023, Month.JULY, 4), "Gym", TransactionType.PAYMENT, -200, "123-456");
 		Payment p4 = new Payment(LocalDate.of(2023, Month.JULY, 18), "Gym", TransactionType.PAYMENT, -200, "123-456");
 		Transfer t4 = new Transfer(LocalDate.of(2023, Month.JULY, 23), "Video Streaming", TransactionType.TRANSFER, -99);
-		Payment p5 = new Payment(LocalDate.of(2023, Month.AUGUST, 01), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Payment p5 = new Payment(LocalDate.of(2023, Month.AUGUST, 1), "Gym", TransactionType.PAYMENT, -200, "123-456");
 
 		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t1, t2, t3, t4), List.of(p1, p2, p3, p4, p5));
 		

@@ -17,6 +17,4 @@ public class Account {
 	public void setUserIdentifier(UUID userIdentifier) {
 		this.userIdentifier = userIdentifier;
 	}
-	
-	
 }
