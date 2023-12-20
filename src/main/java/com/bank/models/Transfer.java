@@ -10,8 +10,8 @@ public class Transfer extends Transaction{
 		super();
 	}
 
-	public Transfer(LocalDate transactionDate, String text, TransactionType trasactionType, double amount) {
-		super(transactionDate, text, trasactionType, amount);
+	public Transfer(LocalDate transactionDate, String text, TransactionType transactionType, double amount) {
+		super(transactionDate, text, transactionType, amount);
 	}
 
 }

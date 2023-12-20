@@ -16,8 +16,8 @@ public class Payment extends Transaction {
 		this.recipientNumber = recipientNumber;
 	}
 
-	public Payment(LocalDate transactionDate, String text, TransactionType trasactionType, double amount, String recipientNumber) {
-		super(transactionDate, text, trasactionType, amount);
+	public Payment(LocalDate transactionDate, String text, TransactionType transactionType, double amount, String recipientNumber) {
+		super(transactionDate, text, transactionType, amount);
 		this.recipientNumber = recipientNumber;
 	}
 

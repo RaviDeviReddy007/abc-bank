@@ -7,18 +7,18 @@ import com.bank.constants.TransactionType;
 public class Transaction {
 	LocalDate transactionDate;
 	String text;
-	TransactionType trasactionType;
+	TransactionType transactionType;
 	double amount;
 	
 	public Transaction() {
 		super();
 	}
 
-	public Transaction(LocalDate transactionDate, String text, TransactionType trasactionType, double amount) {
+	public Transaction(LocalDate transactionDate, String text, TransactionType transactionType, double amount) {
 		super();
 		this.transactionDate = transactionDate;
 		this.text = text;
-		this.trasactionType = trasactionType;
+		this.transactionType = transactionType;
 		this.amount = amount;
 	}
 	
@@ -34,11 +34,11 @@ public class Transaction {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public TransactionType getTrasactionType() {
-		return trasactionType;
+	public TransactionType getTransactionType() {
+		return transactionType;
 	}
-	public void setTrasactionType(TransactionType trasactionType) {
-		this.trasactionType = trasactionType;
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
 	}
 	public double getAmount() {
 		return amount;

@@ -5,12 +5,12 @@ import java.util.UUID;
 
 public class CreditCard extends Account {
 	Long cardNumber;
-	List<Transaction> trasactions;
+	List<Transaction> transactions;
 	
-	public CreditCard(UUID userIdentifier, Long cardNumber, List<Transaction> trasactions) {
+	public CreditCard(UUID userIdentifier, Long cardNumber, List<Transaction> transactions) {
 		super(userIdentifier);
 		this.cardNumber = cardNumber;
-		this.trasactions = trasactions;
+		this.transactions = transactions;
 	}
 
 	public Long getCardNumber() {
@@ -21,12 +21,12 @@ public class CreditCard extends Account {
 		this.cardNumber = cardNumber;
 	}
 
-	public List<Transaction> getTrasactions() {
-		return trasactions;
+	public List<Transaction> getTransactions() {
+		return transactions;
 	}
 
-	public void setTrasactions(List<Transaction> trasactions) {
-		this.trasactions = trasactions;
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 	
 	

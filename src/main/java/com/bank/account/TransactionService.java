@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TransactionService {
-
     /**
      * Retrieves a map where each {@code BankAccount} is associated with a list of transactions (transfers and payments)
      * with negative amounts.
