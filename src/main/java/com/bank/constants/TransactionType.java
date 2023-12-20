@@ -1,6 +1,6 @@
 package com.bank.constants;
 
-public enum TrasactionType {
+public enum TransactionType {
 
 	PAYMENT,
 	TRANSFER

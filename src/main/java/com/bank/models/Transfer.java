@@ -2,7 +2,7 @@ package com.bank.models;
 
 import java.time.LocalDate;
 
-import com.bank.constants.TrasactionType;
+import com.bank.constants.TransactionType;
 
 public class Transfer extends Transaction{
 
@@ -10,7 +10,7 @@ public class Transfer extends Transaction{
 		super();
 	}
 
-	public Transfer(LocalDate transactionDate, String text, TrasactionType trasactionType, double amount) {
+	public Transfer(LocalDate transactionDate, String text, TransactionType trasactionType, double amount) {
 		super(transactionDate, text, trasactionType, amount);
 	}
 

@@ -1,25 +1,36 @@
 package com.bank.models;
 
+import java.util.List;
 import java.util.UUID;
 
-public class CreditCard extends Transaction{
-
-	
+public class CreditCard extends Account {
 	Long cardNumber;
-	UUID userIdentifier;
+	List<Transaction> trasactions;
 	
+	public CreditCard(UUID userIdentifier, Long cardNumber, List<Transaction> trasactions) {
+		super(userIdentifier);
+		this.cardNumber = cardNumber;
+		this.trasactions = trasactions;
+	}
+
 	public Long getCardNumber() {
 		return cardNumber;
 	}
+
 	public void setCardNumber(Long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	public UUID getUserIdentifier() {
-		return userIdentifier;
+
+	public List<Transaction> getTrasactions() {
+		return trasactions;
 	}
-	public void setUserIdentifier(UUID userIdentifier) {
-		this.userIdentifier = userIdentifier;
+
+	public void setTrasactions(List<Transaction> trasactions) {
+		this.trasactions = trasactions;
 	}
+	
+	
+
 	
 	
 }

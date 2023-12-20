@@ -2,7 +2,7 @@ package com.bank.models;
 
 import java.time.LocalDate;
 
-import com.bank.constants.TrasactionType;
+import com.bank.constants.TransactionType;
 
 public class Payment extends Transaction {
 	
@@ -16,7 +16,7 @@ public class Payment extends Transaction {
 		this.recipientNumber = recipientNumber;
 	}
 
-	public Payment(LocalDate transactionDate, String text, TrasactionType trasactionType, double amount, String recipientNumber) {
+	public Payment(LocalDate transactionDate, String text, TransactionType trasactionType, double amount, String recipientNumber) {
 		super(transactionDate, text, trasactionType, amount);
 		this.recipientNumber = recipientNumber;
 	}

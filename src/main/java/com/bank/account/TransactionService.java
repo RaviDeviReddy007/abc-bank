@@ -8,23 +8,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.bank.constants.TimeInterval;
-import com.bank.models.Account;
+import com.bank.models.BankAccount;
 import com.bank.models.Transaction;
 
 public class TransactionService {
 
-	public static List<Transaction> getExcludePositiveAmounts(List<Account> accounts) {
+	public static List<Transaction> getExcludePositiveAmounts(List<BankAccount> accounts) {
 		return accounts.stream()
 				.flatMap(account -> Stream.concat(account.getPayments().stream(), account.getTransfers().stream()))
-				.filter(tx -> tx.getAmount() < 0).collect(Collectors.toList());
+				.filter(tx -> tx.getAmount() < 0)
+				.collect(Collectors.toList());
 	}
 
-	public static Double getAccountBalanace(Account account) {
+	public static Double getAccountBalanace(BankAccount account) {
 		return Stream.of(account).flatMap(a -> Stream.concat(a.getPayments().stream(), a.getTransfers().stream()))
-				.mapToDouble(tx -> tx.getAmount()).sum();
+				.mapToDouble(tx -> tx.getAmount())
+				.sum();
 	}
 
-	public static List<TimeInterval> getAccountTransactionTimeInterval(Account account, String transactionText) {
+	public static List<TimeInterval> getAccountTransactionTimeInterval(BankAccount account, String transactionText) {
 		List<TimeInterval> timeIntervals = new ArrayList<TimeInterval>();
 		List<Transaction> filteredTxs = Stream.of(account)
 				.flatMap(a -> Stream.concat(a.getPayments().stream(), a.getTransfers().stream()))

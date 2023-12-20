@@ -2,21 +2,19 @@ package com.bank.models;
 
 import java.time.LocalDate;
 
-import com.bank.constants.TrasactionType;
+import com.bank.constants.TransactionType;
 
 public class Transaction {
-	
 	LocalDate transactionDate;
 	String text;
-	TrasactionType trasactionType;
+	TransactionType trasactionType;
 	double amount;
-	
 	
 	public Transaction() {
 		super();
 	}
 
-	public Transaction(LocalDate transactionDate, String text, TrasactionType trasactionType, double amount) {
+	public Transaction(LocalDate transactionDate, String text, TransactionType trasactionType, double amount) {
 		super();
 		this.transactionDate = transactionDate;
 		this.text = text;
@@ -36,10 +34,10 @@ public class Transaction {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public TrasactionType getTrasactionType() {
+	public TransactionType getTrasactionType() {
 		return trasactionType;
 	}
-	public void setTrasactionType(TrasactionType trasactionType) {
+	public void setTrasactionType(TransactionType trasactionType) {
 		this.trasactionType = trasactionType;
 	}
 	public double getAmount() {
