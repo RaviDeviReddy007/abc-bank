@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import com.bank.constants.TransactionType;
 
+/**
+ * The {@code Transfer} class represents transfers of the bank account.
+ */
 public class Transfer extends Transaction{
 
 	public Transfer() {

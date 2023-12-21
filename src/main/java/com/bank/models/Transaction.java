@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 import com.bank.constants.TransactionType;
 
+/**
+ * The {@code Transaction} class represents a user basic transaction of either bank account or credit card.
+ * Assumption - This will be used as basic unit in Transfer and Payment (which will have recipient number in its own) .
+ */
 public class Transaction {
 	LocalDate transactionDate;
 	String text;

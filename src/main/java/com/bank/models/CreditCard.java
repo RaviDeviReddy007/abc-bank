@@ -3,6 +3,11 @@ package com.bank.models;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The {@code CreditCard} class represents a user credit card with transactions.
+ * Each credit card is uniquely identified by card number.
+ * Assumption - here not using the payments as in the given data there is recipient number for card txs.
+ */
 public class CreditCard extends Account {
 	Long cardNumber;
 	List<Transaction> transactions;

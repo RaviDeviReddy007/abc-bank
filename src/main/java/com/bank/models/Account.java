@@ -2,6 +2,10 @@ package com.bank.models;
 
 import java.util.UUID;
 
+/**
+ * The {@code Account} class represents a user account of either Bank Account or Credit Card.
+ * Each account is uniquely identified by a {@link UUID}.
+ */
 public class Account {
 	UUID userIdentifier;
 	

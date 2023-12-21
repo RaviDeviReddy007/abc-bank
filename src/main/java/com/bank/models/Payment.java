@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import com.bank.constants.TransactionType;
 
+/**
+ * The {@code Payment} class represents payments of the bank account with recipient number as additional to transaction.
+ */
 public class Payment extends Transaction {
 	
 	String recipientNumber;

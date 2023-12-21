@@ -16,7 +16,6 @@ Retrieves total balance of the give account
 
 Retrieves the possible Time Intervals(Weekly, Monthly, BiWeekly) of the given account and transaction type(e.g. gym etc.)
 
-
 ### Assumptions
 Task#3 - Just providing the account and transactionType to see the possible interval types.
 There is some confusion around how to show the data types because for the give transaction text there will be different Time Intervals and there is other alternative to retrieve boolean to show weather 

@@ -3,6 +3,10 @@ package com.bank.models;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The {@code BankAccount} class represents a user bank account with transfers and payments.
+ * Each bank account is uniquely identified by a {@link UUID}.
+ */
 public class BankAccount extends Account{
 	UUID identifier;
 	List<Transfer> transfers;

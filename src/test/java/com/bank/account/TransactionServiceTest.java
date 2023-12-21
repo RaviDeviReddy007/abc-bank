@@ -25,55 +25,54 @@ public class TransactionServiceTest {
 	@DisplayName("Test Exclude Positive Transactions Accounts")
 	@Test
 	void testExcludePositiveAmounts() {
-		Transfer t11 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 17), "T-11 streaming", TransactionType.TRANSFER, -100);
-		Payment t12 = new Payment(LocalDate.of(2023, Month.DECEMBER, 18), "T-12 gym", TransactionType.PAYMENT, -200, "Recipient-1");
+		Transfer transfer1 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 17), "T-11 streaming", TransactionType.TRANSFER, -100);
+		Payment payment1 = new Payment(LocalDate.of(2023, Month.DECEMBER, 18), "T-12 gym", TransactionType.PAYMENT, -200, "Recipient-1");
 		
-		Transfer t21 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-21 salary", TransactionType.TRANSFER, 1000);
-		Payment t22 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
+		Transfer transfer2 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-21 salary", TransactionType.TRANSFER, 1000);
+		Payment payment2 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
 
-		Transfer t31 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-31 salary", TransactionType.TRANSFER, 1000);
-		Payment t32 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-32 gym", TransactionType.PAYMENT, 100, "Recipient-3");
+		Transfer transfer3 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 19), "T-31 salary", TransactionType.TRANSFER, 1000);
+		Payment payment3 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-32 gym", TransactionType.PAYMENT, 100, "Recipient-3");
 
-		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t11), List.of(t12));
-		BankAccount a2 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t21), List.of(t22));
-		BankAccount a3 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t31), List.of(t32));
+		BankAccount account1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(transfer1), List.of(payment1));
+		BankAccount account2 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(transfer2), List.of(payment2));
+		BankAccount account3 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(transfer3), List.of(payment3));
 
-		Map<BankAccount, List<Transaction>> expectedOutput = Map.of(a1, List.of(t11, t12), a2, List.of(t22));
-		assertThat(TransactionService.getExcludePositiveTransactionsAccounts(List.of(a1, a2, a3)), is(expectedOutput));
+		Map<BankAccount, List<Transaction>> expectedOutput = Map.of(account1, List.of(transfer1, payment1), account2, List.of(payment2));
+		assertThat(TransactionService.getExcludePositiveTransactionsAccounts(List.of(account1, account2, account3)), is(expectedOutput));
 	}
 	
 	@DisplayName("Test Account Balance Amount")
 	@Test
 	void testAccountBalance() {
-		Transfer t1 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 14), "T-11 streaming", TransactionType.TRANSFER, -100);
-		Payment p1 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-12 gym", TransactionType.PAYMENT, -200, "Recipient-1");
-		Transfer t2 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 16), "T-21 salary", TransactionType.TRANSFER, 1000);
-		Payment p2 = new Payment(LocalDate.of(2023, Month.DECEMBER, 17), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
+		Transfer transfer1 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 14), "T-11 streaming", TransactionType.TRANSFER, -100);
+		Payment payment1 = new Payment(LocalDate.of(2023, Month.DECEMBER, 15), "T-12 gym", TransactionType.PAYMENT, -200, "Recipient-1");
+		Transfer transfer2 = new Transfer(LocalDate.of(2023, Month.DECEMBER, 16), "T-21 salary", TransactionType.TRANSFER, 1000);
+		Payment payment2 = new Payment(LocalDate.of(2023, Month.DECEMBER, 17), "T-22 gym", TransactionType.PAYMENT, -100, "Recipient-2");
 
-		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t1, t2), List.of(p1, p2));
-		assertEquals(600, TransactionService.getAccountBalance(a1));
+		BankAccount account1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(transfer1, transfer2), List.of(payment1, payment2));
+		assertEquals(600, TransactionService.getAccountBalance(account1));
 	}
 
 	
 	@DisplayName("Test Time Intervals of transaction types")
 	@Test
 	void testAccountTransactionTimeInterval() {
-		Transfer t1 = new Transfer(LocalDate.of(2023, Month.MAY, 23), "Video Streaming", TransactionType.TRANSFER, -99);
-		Payment p1 = new Payment(LocalDate.of(2023, Month.JUNE, 20), "Gym", TransactionType.PAYMENT, -200, "123-456");
-		Transfer t2 = new Transfer(LocalDate.of(2023, Month.JUNE, 22), "Video Streaming", TransactionType.TRANSFER, -99);
-		Transfer t3 = new Transfer(LocalDate.of(2023, Month.JUNE, 25), "Salary", TransactionType.TRANSFER, 1000);
-		Payment p2 = new Payment(LocalDate.of(2023, Month.JUNE, 28), "Gym", TransactionType.PAYMENT, -50, "123-456");
-		Payment p3 = new Payment(LocalDate.of(2023, Month.JULY, 4), "Gym", TransactionType.PAYMENT, -200, "123-456");
-		Payment p4 = new Payment(LocalDate.of(2023, Month.JULY, 18), "Gym", TransactionType.PAYMENT, -200, "123-456");
-		Transfer t4 = new Transfer(LocalDate.of(2023, Month.JULY, 23), "Video Streaming", TransactionType.TRANSFER, -99);
-		Payment p5 = new Payment(LocalDate.of(2023, Month.AUGUST, 1), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Transfer transfer1 = new Transfer(LocalDate.of(2023, Month.MAY, 23), "Video Streaming", TransactionType.TRANSFER, -99);
+		Payment payment1 = new Payment(LocalDate.of(2023, Month.JUNE, 20), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Transfer transfer2 = new Transfer(LocalDate.of(2023, Month.JUNE, 22), "Video Streaming", TransactionType.TRANSFER, -99);
+		Transfer transfer3 = new Transfer(LocalDate.of(2023, Month.JUNE, 25), "Salary", TransactionType.TRANSFER, 1000);
+		Payment payment2 = new Payment(LocalDate.of(2023, Month.JUNE, 28), "Gym", TransactionType.PAYMENT, -50, "123-456");
+		Payment payment3 = new Payment(LocalDate.of(2023, Month.JULY, 4), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Payment payment4 = new Payment(LocalDate.of(2023, Month.JULY, 18), "Gym", TransactionType.PAYMENT, -200, "123-456");
+		Transfer transfer4 = new Transfer(LocalDate.of(2023, Month.JULY, 23), "Video Streaming", TransactionType.TRANSFER, -99);
+		Payment payment5 = new Payment(LocalDate.of(2023, Month.AUGUST, 1), "Gym", TransactionType.PAYMENT, -200, "123-456");
 
-		BankAccount a1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(t1, t2, t3, t4), List.of(p1, p2, p3, p4, p5));
+		BankAccount account1 = new BankAccount(UUID.randomUUID(), UUID.randomUUID(), List.of(transfer1, transfer2, transfer3, transfer4), List.of(payment1, payment2, payment3, payment4, payment5));
 		
-		assertEquals(1, TransactionService.getAccountTransactionTimeInterval(a1, "Video Streaming").size());
-		assertEquals(TimeInterval.MONTHLY, TransactionService.getAccountTransactionTimeInterval(a1, "Video Streaming").get(0));
-		assertNotEquals(1, TransactionService.getAccountTransactionTimeInterval(a1, "Gym").size());
-		assertNotEquals(TimeInterval.BIWEEKLY, TransactionService.getAccountTransactionTimeInterval(a1, "Gym").get(0));
+		assertEquals(1, TransactionService.getAccountTransactionTimeInterval(account1, "Video Streaming").size());
+		assertEquals(TimeInterval.MONTHLY, TransactionService.getAccountTransactionTimeInterval(account1, "Video Streaming").get(0));
+		assertNotEquals(1, TransactionService.getAccountTransactionTimeInterval(account1, "Gym").size());
+		assertNotEquals(TimeInterval.BIWEEKLY, TransactionService.getAccountTransactionTimeInterval(account1, "Gym").get(0));
 	}
-
 }
